@@ -20,7 +20,6 @@
 	<!--扫包  -->       
 	<context:component-scan base-package="com.baobaotao.dao"></context:component-scan>
 	<context:component-scan base-package="com.baobaotao.service"></context:component-scan>
-	<context:component-scan base-package="com.baobaotao.test.autotest"></context:component-scan>
 	<!-- 数据源 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -97,24 +96,27 @@
 	</bean>
 	<!--获取spring容器内其他bin的参数的属性值 -->
 	<bean id="car4" class="com.baobaotao.test.Car" parent="abstractCar" p:color="${color}" p:brand="#{car.brand}"/>
-	<!-- springAOP 代理 -->
+	<!-- springAOP 增强 
 	<bean id="advice" class="com.baobaotao.test.springadvice.MyMethodBeforeAdvice"/>
 	<bean id="afterAdvice" class="com.baobaotao.test.springadvice.MyMethodAfter"/>
 	<bean id="aroundAdvice" class="com.baobaotao.test.springadvice.MyMethodInterceptor"/>
 	<bean id="throwAdvice" class="com.baobaotao.test.springadvice.MyThrowsAdvice"/>
+	-->
 	<!-- 增强结束 -->
-	<!-- 代理的类 -->
+	<!-- 代理的类 
 	<bean id="target" class="com.baobaotao.test.springadvice.NativeWaiter"/>
 	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="aroundAdvice" p:target-ref="target" p:proxyTargetClass="true"/>
 	
 	<bean id="updateTarget" class="com.baobaotao.test.proxy.UpdateServiceImpl"/>
 	<bean id="updateProxy" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="throwAdvice" p:target-ref="updateTarget" p:proxyTargetClass="true"/>
+	-->
 	<!-- 配置切面 -->
 	<bean id="waiterTar" class="com.baobaotao.test.aspect.Waitrees"/>
 	<bean id="sellerTar" class="com.baobaotao.test.aspect.Seller"/>
 	<bean id="greetBeforeAdvice" class="com.baobaotao.test.aspect.GreetBeforeAdvice"/>
 	<bean id="greetAdvisor" class="com.baobaotao.test.aspect.GreetingAdvisor" p:advice-ref="greetBeforeAdvice"/>
-	<bean id="proxyParent" abstract="true" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="greetAdvisor" p:proxyTargetClass="true"  />
+	<bean id="waitrees" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="greetAdvisor" p:proxyTargetClass="true"  p:target-ref="waiterTar"/>
+	<!-- 
 	<bean id="waitrees" parent="proxyParent" p:target-ref="waiterTar" />
-	<bean id="seller" parent="proxyParent" p:target-ref="sellerTar" />
+	<bean id="seller" parent="proxyParent" p:target-ref="sellerTar" /> -->
 </beans>

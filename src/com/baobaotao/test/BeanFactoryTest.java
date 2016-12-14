@@ -1,5 +1,6 @@
 package com.baobaotao.test;
 
+import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-import com.baobaotao.test.aspect.Seller;
 import com.baobaotao.test.aspect.Waitrees;
 import com.baobaotao.test.autotest.Animal;
 import com.baobaotao.test.autotest.Animals;
@@ -24,7 +24,7 @@ import com.baobaotao.test.proxy.UpdateServiceImpl;
 import com.baobaotao.test.springadvice.Waiter;
 
 public class BeanFactoryTest {
-	public static void main(String[] args) throws SQLException {
+	public static void main(String[] args) throws Exception {
 		new BeanFactoryTest().method17();
 	}
 	public void originMethod1(){
@@ -139,11 +139,16 @@ public class BeanFactoryTest {
 		}
 		service.update(123);
 	}
-	public void method17(){
-		ApplicationContext context=new ClassPathXmlApplicationContext("applicationcontext.xml");
+	public void method17() throws Exception{
+		//applicationcontext.xml
+		//com.baobaotao.test.aspect.WaitreesgreetTo
+		//com/baobaotao/test/aspect/bean1.xml
+		ApplicationContext context=new ClassPathXmlApplicationContext("com/baobaotao/test/aspect/bean1.xml");
 		Waitrees waiter=context.getBean("waitrees", Waitrees.class);
-		Seller seller=context.getBean("seller", Seller.class);
-		//waiter.greetTo("miss li");
-		seller.greetTo("miss li");
+		//Seller seller=context.getBean("seller", Seller.class);
+		waiter.greetTo("miss li");
+		waiter.greetTo("mayun");
+		//seller.greetTo("miss li");
 	}
+	
 }
