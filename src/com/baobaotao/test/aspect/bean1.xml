@@ -32,7 +32,6 @@
 	-->
 	<bean id="dynamicPointCut" class="com.baobaotao.test.aspect.GreetingDynamicPointCut"/>
 	<bean id="dynamicAdvisor"  class="org.springframework.aop.support.DefaultPointcutAdvisor" p:advice-ref="greetBeforeAdvice" p:pointcut-ref="dynamicPointCut"/>
-	
 	<bean id="waitrees" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="dynamicAdvisor" p:proxyTargetClass="true"  p:target-ref="waiterTar" />          
            
 </beans>
