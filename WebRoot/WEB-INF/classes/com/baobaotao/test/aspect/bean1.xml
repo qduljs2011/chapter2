@@ -33,5 +33,7 @@
 	<bean id="dynamicPointCut" class="com.baobaotao.test.aspect.GreetingDynamicPointCut"/>
 	<bean id="dynamicAdvisor"  class="org.springframework.aop.support.DefaultPointcutAdvisor" p:advice-ref="greetBeforeAdvice" p:pointcut-ref="dynamicPointCut"/>
 	<bean id="waitrees" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="dynamicAdvisor" p:proxyTargetClass="true"  p:target-ref="waiterTar" />          
-           
+    <!-- 名称代理生成器 --> 
+    <bean id="waiterTar2" class="com.baobaotao.test.aspect.Waitrees"/>  
+    <bean id="waiterProxy" class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator" p:interceptorNames="greetBeforeAdvice" p:optimize="true" p:beanNames="waiterTar2" />  
 </beans>

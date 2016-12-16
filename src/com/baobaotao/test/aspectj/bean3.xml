@@ -15,9 +15,8 @@
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
            http://www.springframework.org/schema/tx 
            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-           
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-	<bean id="nativeWaiter" class="com.baobaotao.test.aspectLan.NativeWaiter"/>
-	<bean id="naughtyWaiter" class="com.baobaotao.test.aspectLan.NaughtyWaiter"/>
-	<bean id="testAspect" class="com.baobaotao.test.aspectLan.TestAspect"/>
+      <aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>
+      <bean id="apple" class="com.baobaotao.test.aspectj.Apple" />
+      <bean id="poster" class="com.baobaotao.test.aspectj.Poster"/>
+      <bean id="peopleAdvisor" class="com.baobaotao.test.aspectj.PeopleAdvisor"/>
 </beans>

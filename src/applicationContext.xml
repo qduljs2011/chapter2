@@ -103,13 +103,13 @@
 	<bean id="throwAdvice" class="com.baobaotao.test.springadvice.MyThrowsAdvice"/>
 	-->
 	<!-- 增强结束 -->
-	<!-- 代理的类 
+	<!-- 代理的类
 	<bean id="target" class="com.baobaotao.test.springadvice.NativeWaiter"/>
 	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="aroundAdvice" p:target-ref="target" p:proxyTargetClass="true"/>
 	
 	<bean id="updateTarget" class="com.baobaotao.test.proxy.UpdateServiceImpl"/>
 	<bean id="updateProxy" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="throwAdvice" p:target-ref="updateTarget" p:proxyTargetClass="true"/>
-	-->
+	 -->
 	<!-- 配置切面 -->
 	<bean id="waiterTar" class="com.baobaotao.test.aspect.Waitrees"/>
 	<bean id="sellerTar" class="com.baobaotao.test.aspect.Seller"/>

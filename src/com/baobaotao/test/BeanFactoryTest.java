@@ -1,10 +1,9 @@
 package com.baobaotao.test;
 
-import java.lang.reflect.Method;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.aop.aspectj.annotation.AspectJProxyFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -15,18 +14,21 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import com.baobaotao.test.aspect.EmployWaiter;
 import com.baobaotao.test.aspect.Waitrees;
+import com.baobaotao.test.aspectj.Fruit;
+import com.baobaotao.test.aspectj.Poster;
 import com.baobaotao.test.autotest.Animal;
 import com.baobaotao.test.autotest.Animals;
 import com.baobaotao.test.autotest.Bird;
 import com.baobaotao.test.conftest.AnimalConfig;
 import com.baobaotao.test.proxy.UpdateServiceImpl;
+import com.baobaotao.test.springadvice.NativeWaiter;
+import com.baobaotao.test.springadvice.PreGreetingAspect;
 import com.baobaotao.test.springadvice.Waiter;
 
 public class BeanFactoryTest {
-	public static void main(String[] args) throws Exception {
-		new BeanFactoryTest().method17();
-	}
+	
 	public void originMethod1(){
 		Resource resource=new PathMatchingResourcePatternResolver().getResource("classpath:applicationContext.xml");
 		BeanFactory beanFactory=new XmlBeanFactory(resource);
@@ -150,5 +152,38 @@ public class BeanFactoryTest {
 		waiter.greetTo("mayun");
 		//seller.greetTo("miss li");
 	}
-	
+	public void method18() throws Exception{
+		ApplicationContext context=new ClassPathXmlApplicationContext("com/baobaotao/test/aspect/bean1.xml");
+		Waitrees waiter=context.getBean("waiterProxy", Waitrees.class);
+		waiter.greetTo("mayun");
+	}
+	public void method19(){
+		NativeWaiter waiter=new NativeWaiter();
+		AspectJProxyFactory factory=new AspectJProxyFactory();
+		factory.setTarget(waiter);
+		factory.addAspect(PreGreetingAspect.class);
+		Waiter waiterProxy=factory.getProxy();
+		waiterProxy.greetTo("miss li");
+	}
+	public void method20(){
+		ApplicationContext context=new ClassPathXmlApplicationContext("com/baobaotao/test/aspect/bean2.xml");
+		Waiter waiter=context.getBean("waiter1",Waiter.class);
+		waiter.serviceTo("123");
+	}
+	public void method21(){
+		ApplicationContext context=new ClassPathXmlApplicationContext("com/baobaotao/test/aspect/bean2.xml");
+		EmployWaiter employ=context.getBean("employWaiter",EmployWaiter.class);
+		NativeWaiter waiter=(NativeWaiter)context.getBean("waiter1");
+		waiter.greetTo("123");
+		employ.employWaiter(waiter);
+	}
+	public void method22(){
+		ApplicationContext context=new ClassPathXmlApplicationContext("com/baobaotao/test/aspectj/bean3.xml");
+		Poster poster=context.getBean("poster",Poster.class);
+		Fruit fruit=(Fruit)poster;
+		fruit.getName();
+	}
+	public static void main(String[] args) throws Exception {
+		new BeanFactoryTest().method22();
+	}
 }
