@@ -5,7 +5,8 @@ import org.aspectj.lang.annotation.Aspect;
 
 @Aspect
 public class TestAspect {
-	@AfterReturning("@annotation(com.baobaotao.test.aspectLann.NeedTest)")
+	//@annotation( com.baobaotao.test.aspectLan.NeedTest)
+	@AfterReturning("execution(* com.baobaotao.test.aspectLan.Waiter+.*(..))")
 	public void needTestFun(){
 		System.out.println("needTestFun execution()");
 	}

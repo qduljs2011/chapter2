@@ -12,6 +12,6 @@ public class NativeWaiter implements Waiter{
 		
 	}
 	public void smile(String clientName,int time){
-		
+		System.out.println("笑着对"+clientName+"说:您花费了"+time);
 	}
 }

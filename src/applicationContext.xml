@@ -86,7 +86,8 @@
 	 	</property>
 	</bean>
 	<!-- 配置属性文件 -->
-	<!--  -->
+	<!-- 两种方法-->
+	<context:property-placeholder location=""/>
 	<bean class="com.baobaotao.util.EncryptPropertyPlaceholderConfigurer" >
 		<property name="locations">
 			<list>

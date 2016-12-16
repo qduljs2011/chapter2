@@ -1,22 +1,20 @@
 package com.baobaotao.test.aspectLan;
 
-import com.baobaotao.test.springadvice.NativeWaiter;
+public class NaughtyWaiter implements Waiter {
 
-public class NaughtyWaiter extends NativeWaiter {
-
-	@Override
-	@NeedTest
-	public void greetTo(String name) {
-		// TODO Auto-generated method stub
-		super.greetTo(name);
-	}
-
-	@Override
-	public void serviceTo(String name) {
-		// TODO Auto-generated method stub
-		super.serviceTo(name);
-	}
 	public void joke(String clientName,int times){
+		System.out.println("给"+clientName+"讲个笑话，花费了时间Wie"+times);
+	}
+	@NeedTest
+	@Override
+	public void greeTo(String clientName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void serveTo(String clientName) {
+		// TODO Auto-generated method stub
 		
 	}
 }
