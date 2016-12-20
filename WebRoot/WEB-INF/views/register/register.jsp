@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>宝宝淘论坛登录</title>
+    <title>新增用户</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -11,14 +11,13 @@
 	<meta http-equiv="description" content="This is my page">
   </head>
   <body>
-  		<c:if test="${!empty error}">
-  			<font color="red"><c:out value="${error}"/></font>
-  		</c:if>
-  		<form action="<c:url value='/loginCheck.do'/>" method="post">
-  		用户名:<input type="text" name="userName"><br/>
-  	        密码:<input type="password" name="password"><br/>
-  	     <input type="submit" value="登录"/>
-  	     <input type="reset" value="重置"/>   
+  		<form action="<c:url value='/user/user.do'/>" method="post">
+  			<table>
+  				<tr><td>用户名:</td><td><input type="text" name="userName" /></td></tr>
+  				<tr><td>密码:</td><td><input type="password" name="password" /></td></tr>
+  				<tr><td>姓名:</td><td><input type="text" name="realName" /></td></tr>
+  				<tr><td colspan="2"><input type="submit" name="提交" /></td></tr>
+  			</table>
   		</form>
   </body>
 </html>

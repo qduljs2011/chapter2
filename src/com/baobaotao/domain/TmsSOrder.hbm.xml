@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-12-19 13:45:05 by Hibernate Tools 5.2.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.baobaotao.domain.TmsSOrder" table="tms_s_order" catalog="tms" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="orderId" type="string">
+            <column name="order_id" length="32">
+                <comment>&#183;&#162;&#187;&#245;&#181;&#165;&#186;&#197;</comment>
+            </column>
+        </property>
+        <property name="tmsOrderCode" type="string">
+            <column name="tms_order_code" length="32">
+                <comment>&#197;&#228;&#203;&#205;&#181;&#165;&#186;&#197;</comment>
+            </column>
+        </property>
+        <property name="mallOrderCode" type="string">
+            <column name="mall_order_code" length="32">
+                <comment>&#198;&#189;&#204;&#168;&#182;&#169;&#181;&#165;&#186;&#197;</comment>
+            </column>
+        </property>
+        <property name="orderType" type="string">
+            <column name="order_type" length="2">
+                <comment>&#182;&#169;&#181;&#165;&#192;&#224;&#208;&#205;
+                &#163;&#168;01:&#205;&#248;&#201;&#207;&#214;&#167;&#184;&#182;,02&#187;&#245;&#181;&#189;&#184;&#182;&#191;&#238;&#163;&#169;</comment>
+            </column>
+        </property>
+        <property name="orderStatus" type="java.lang.Byte">
+            <column name="order_status">
+                <comment>
+                &#182;&#169;&#181;&#165;&#215;&#180;&#204;&#172;&#163;&#168;1&#180;&#253;&#197;&#228;&#203;&#205;,2&#197;&#228;&#203;&#205;&#214;&#208;,3&#197;&#228;&#203;&#205;&#205;&#234;&#179;&#201;&#163;&#169;</comment>
+            </column>
+        </property>
+        <property name="orderTime" type="timestamp">
+            <column name="order_time" length="19" not-null="true">
+                <comment>&#207;&#194;&#181;&#165;&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="oldArrivalStartTime" type="timestamp">
+            <column name="old_arrival_start_time" length="19" not-null="true">
+                <comment>&#194;&#242;&#188;&#210;&#212;&#173;&#212;&#164;&#212;&#188;&#203;&#205;&#180;&#239;&#202;&#177;&#188;&#228;&#198;&#240;</comment>
+            </column>
+        </property>
+        <property name="oldArrivalEndTime" type="timestamp">
+            <column name="old_arrival_end_time" length="19" not-null="true">
+                <comment>&#194;&#242;&#188;&#210;&#212;&#173;&#212;&#164;&#212;&#188;&#203;&#205;&#180;&#239;&#202;&#177;&#188;&#228;&#214;&#185;</comment>
+            </column>
+        </property>
+        <property name="estimateArrivalEndTime" type="timestamp">
+            <column name="estimate_arrival_end_time" length="19" not-null="true">
+                <comment>&#212;&#164;&#212;&#188;&#203;&#205;&#180;&#239;&#202;&#177;&#188;&#228;&#214;&#185;</comment>
+            </column>
+        </property>
+        <property name="estimateArrivalStartTime" type="timestamp">
+            <column name="estimate_arrival_start_time" length="19" not-null="true">
+                <comment>&#212;&#164;&#212;&#188;&#203;&#205;&#180;&#239;&#202;&#177;&#188;&#228;&#198;&#240;</comment>
+            </column>
+        </property>
+        <property name="orderAmount" type="java.lang.Float">
+            <column name="order_amount" precision="12" scale="0">
+                <comment>&#189;&#240;&#182;&#238;</comment>
+            </column>
+        </property>
+        <property name="bagWeight" type="java.lang.Float">
+            <column name="bag_weight" precision="12" scale="0">
+                <comment>&#214;&#216;&#193;&#191;</comment>
+            </column>
+        </property>
+        <property name="customerId" type="string">
+            <column name="customer_id" length="32">
+                <comment>&#191;&#205;&#187;&#167;&#177;&#224;&#186;&#197;</comment>
+            </column>
+        </property>
+        <property name="customerName" type="string">
+            <column name="customer_name" length="32">
+                <comment>&#191;&#205;&#187;&#167;&#208;&#213;&#195;&#251;</comment>
+            </column>
+        </property>
+        <property name="receiverName" type="string">
+            <column name="receiver_name" length="32">
+                <comment>&#202;&#213;&#187;&#245;&#200;&#203;&#208;&#213;&#195;&#251;</comment>
+            </column>
+        </property>
+        <property name="province" type="string">
+            <column name="province" length="10">
+                <comment>&#202;&#213;&#187;&#245;&#202;&#161;</comment>
+            </column>
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="10">
+                <comment>&#202;&#213;&#187;&#245;&#202;&#208;</comment>
+            </column>
+        </property>
+        <property name="district" type="string">
+            <column name="district" length="10">
+                <comment>&#202;&#213;&#187;&#245;&#199;&#248;</comment>
+            </column>
+        </property>
+        <property name="customerAddress" type="string">
+            <column name="customer_address" length="100">
+                <comment>&#191;&#205;&#187;&#167;&#207;&#234;&#207;&#184;&#181;&#216;&#214;&#183;</comment>
+            </column>
+        </property>
+        <property name="customerMobile" type="string">
+            <column name="customer_mobile" length="20">
+                <comment>&#191;&#205;&#187;&#167;&#193;&#170;&#207;&#181;&#181;&#231;&#187;&#176;</comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date" length="19" not-null="true">
+                <comment>&#180;&#180;&#189;&#168;&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="updataDate" type="timestamp">
+            <column name="updata_date" length="19" not-null="true">
+                <comment>&#208;&#222;&#184;&#196;&#202;&#177;&#188;&#228;</comment>
+            </column>
+        </property>
+        <property name="longitude" type="big_decimal">
+            <column name="longitude" precision="10" scale="7">
+                <comment>&#190;&#173;&#182;&#200;</comment>
+            </column>
+        </property>
+        <property name="latitude" type="big_decimal">
+            <column name="latitude" precision="10" scale="7">
+                <comment>&#206;&#179;&#182;&#200;</comment>
+            </column>
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="100">
+                <comment>&#194;&#242;&#188;&#210;&#193;&#244;&#209;&#212;</comment>
+            </column>
+        </property>
+        <property name="bak1" type="string">
+            <column name="bak_1" length="32" />
+        </property>
+        <property name="bak2" type="string">
+            <column name="bak_2" length="32" />
+        </property>
+        <property name="bak3" type="string">
+            <column name="bak_3" length="32" />
+        </property>
+        <property name="bak4" type="string">
+            <column name="bak_4" length="32" />
+        </property>
+        <property name="bak5" type="string">
+            <column name="bak_5" length="32" />
+        </property>
+        <property name="bak6" type="string">
+            <column name="bak_6" length="32" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -45,7 +45,7 @@
 	<!-- 测试
 		<bean id="carFactory" class="com.baobaotao.test.CarFactory"/>
 	-->
-	<!--   -->
+	<!--  
 	<bean id="car" class="com.baobaotao.test.Car" p:brand="test"  p:maxSpeed="100" init-method="myInit" destroy-method="myDestroy" scope="singleton"/>
 	<bean id="abstractCar" class="com.baobaotao.test.Car" p:brand="父子" p:color="绿色" abstract="true"  />
 	<bean id="car3"  p:color="绿色" parent="abstractCar"/>
@@ -54,17 +54,19 @@
 	<bean id="magicBoss" class="com.baobaotao.test.MagicBoss">
 	 	<lookup-method name="getCar" bean="car2"/>
     </bean>
+     -->
 	<!-- bin工厂后置处理器 -->
 	<!-- 
 	<bean id="mybeanFactoryPostProcessor" class="com.baobaotao.test.MyBeanFactoryPostProcessor"/>
 	<bean id="myBeanPostProcessor"  class="com.baobaotao.test.MyBeanPostProcessor"/>
-	 -->
+	 
 	<bean id="tree" class="com.baobaotao.test.Tree"  scope="request">
 	 	<constructor-arg ref="car" index="0"> </constructor-arg>
 	 	<constructor-arg type="java.lang.String" value="2" index="2" ></constructor-arg>
 	 	<constructor-arg type="java.lang.String" value="1" index="1" ></constructor-arg>
 	 	<aop:scoped-proxy/>
 	</bean>
+	
 	<bean id="tree2" class="com.baobaotao.test.Tree" >
 	 	<property name="car" ref="car"></property>
 	 	<property name="car.brand" value="级联品牌"></property>
@@ -85,8 +87,9 @@
 	 		</map>
 	 	</property>
 	</bean>
+	-->
 	<!-- 配置属性文件 -->
-	<!-- 两种方法-->
+	<!-- 两种方法
 	<context:property-placeholder location=""/>
 	<bean class="com.baobaotao.util.EncryptPropertyPlaceholderConfigurer" >
 		<property name="locations">
@@ -95,8 +98,10 @@
 			</list>
 		</property>
 	</bean>
-	<!--获取spring容器内其他bin的参数的属性值 -->
+	-->
+	<!--获取spring容器内其他bin的参数的属性值
 	<bean id="car4" class="com.baobaotao.test.Car" parent="abstractCar" p:color="${color}" p:brand="#{car.brand}"/>
+	 -->
 	<!-- springAOP 增强 
 	<bean id="advice" class="com.baobaotao.test.springadvice.MyMethodBeforeAdvice"/>
 	<bean id="afterAdvice" class="com.baobaotao.test.springadvice.MyMethodAfter"/>
@@ -111,13 +116,15 @@
 	<bean id="updateTarget" class="com.baobaotao.test.proxy.UpdateServiceImpl"/>
 	<bean id="updateProxy" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="throwAdvice" p:target-ref="updateTarget" p:proxyTargetClass="true"/>
 	 -->
-	<!-- 配置切面 -->
+	<!-- 配置切面
 	<bean id="waiterTar" class="com.baobaotao.test.aspect.Waitrees"/>
 	<bean id="sellerTar" class="com.baobaotao.test.aspect.Seller"/>
 	<bean id="greetBeforeAdvice" class="com.baobaotao.test.aspect.GreetBeforeAdvice"/>
 	<bean id="greetAdvisor" class="com.baobaotao.test.aspect.GreetingAdvisor" p:advice-ref="greetBeforeAdvice"/>
 	<bean id="waitrees" class="org.springframework.aop.framework.ProxyFactoryBean" p:interceptorNames="greetAdvisor" p:proxyTargetClass="true"  p:target-ref="waiterTar"/>
+	 -->
 	<!-- 
 	<bean id="waitrees" parent="proxyParent" p:target-ref="waiterTar" />
 	<bean id="seller" parent="proxyParent" p:target-ref="sellerTar" /> -->
+	<!--  <tx:annotation-driven/>-->
 </beans>

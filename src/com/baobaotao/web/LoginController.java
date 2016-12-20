@@ -27,11 +27,11 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/index.html")
+	@RequestMapping("/index.do")
 	public String loginPage(){
 		return "login";
 	}
-	@RequestMapping("/loginCheck.html")
+	@RequestMapping("/loginCheck.do")
 	public ModelAndView loginCheck(HttpServletRequest request,TUser loginuser ){
 		//ApplicationContext context=(ApplicationContext)request.getSession().getServletContext().getAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE);
 		//Tree tree=context.getBean("tree", Tree.class);

@@ -11,34 +11,22 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.baobaotao.domain.TUser;
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"/applicationContext.xml"})
 public class UserServiceTest {
-	@Autowired
-	private UserService userService;
+	private TUser user;
 	@Before
 	public void setUp() throws Exception {
+		System.out.println("初始化方法");
+		user=null;
 	}
-
+	@Test(expected=NullPointerException.class,timeout=10)
+	public void method1(){
+		//System.out.println("exception");
+		assertNotNull(user.getUserName());
+	}
+	
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
-	@Test
-	public void hasMatchUser(){
-		boolean b1=userService.hasMatcher("123", "123");
-		boolean b2=userService.hasMatcher("admin", "1111");
-		assertTrue(b1);
-		assertTrue(!b2);
 		
 	}
-	@Test
-	public void findByUserByName(){
-		TUser user=userService.getUserByName("admin");
-		assertTrue(user.getUserName().endsWith("admin"));
-	}
+
 }

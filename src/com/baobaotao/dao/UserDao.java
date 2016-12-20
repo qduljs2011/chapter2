@@ -39,5 +39,8 @@ public class UserDao {
 		String sqlStr="update t_user set credits=?,last_visit=?,last_ip=? where user_id=?";
 		jdbcTemplate.update(sqlStr, new Object[]{user.getCredits(),user.getLastVisit(),user.getLastIp(),user.getUserId()});
 	}
-	
+	public void saveUser(TUser user) {
+		String sqlStr="insert into t_user(user_name,pass_word,last_visit) values(?,?,now())";
+		jdbcTemplate.update(sqlStr, user.getUserName(),user.getPassword());
+	}
 }

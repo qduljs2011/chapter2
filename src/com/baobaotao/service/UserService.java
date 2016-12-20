@@ -32,4 +32,7 @@ public class UserService {
 		userDao.updateLoginInfo(user);
 		loginLogDao.insertLoginLog(log);
 	}
+	public void createUser(TUser user) {
+		userDao.saveUser(user);
+	}
 }
